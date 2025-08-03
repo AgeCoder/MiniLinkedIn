@@ -13,10 +13,10 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8 md:py-12">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-          {/* Left Sidebar */}
-          {session && (
+      {session ? (
+        <div className="container mx-auto px-4 py-8 md:py-12">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+            {/* Left Sidebar */}
             <aside className="hidden lg:block lg:col-span-3">
               <Card className="sticky top-24">
                 <CardHeader>
@@ -40,99 +40,96 @@ export default async function HomePage() {
                 </CardHeader>
               </Card>
             </aside>
-          )}
 
-          {/* Main Content */}
-          <main className="lg:col-span-6">
-            {session ? (
-              <>
-                <Card className="mb-6">
-                  <PostForm
-                  />
-                </Card>
-                <div className="space-y-4">
-                  {posts.length > 0 ? (
-                    posts.map((post) => <PostCard key={post.id} post={post} />)
-                  ) : (
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>No posts yet</CardTitle>
-                        <CardDescription>
-                          Be the first to share something with your network!
-                        </CardDescription>
-                      </CardHeader>
-                    </Card>
-                  )}
-                </div>
-              </>
-            ) : (
-              <div className="flex flex-col items-center justify-center py-12">
-                <Card className="w-full max-w-md">
-                  <CardHeader className="space-y-4 text-center">
-                    <Linkedin className="mx-auto h-12 w-12 text-blue-600" />
-                    <CardTitle>Welcome to MiniLinkedIn</CardTitle>
-                    <CardDescription>
-                      Connect with professionals and grow your network
-                    </CardDescription>
-                  </CardHeader>
-                  <div className="p-6 pt-0 space-y-4">
-                    <Button asChild className="w-full">
-                      <Link href="/login">Sign In</Link>
-                    </Button>
-                    <Button asChild variant="outline" className="w-full">
-                      <Link href="/register">Create Account</Link>
-                    </Button>
-                  </div>
-                </Card>
+            {/* Main Content */}
+            <main className="lg:col-span-6">
+              <Card className="mb-6">
+                <PostForm />
+              </Card>
+              <div className="space-y-4">
+                {posts.length > 0 ? (
+                  posts.map((post) => <PostCard key={post.id} post={post} />)
+                ) : (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>No posts yet</CardTitle>
+                      <CardDescription>
+                        Be the first to share something with your network!
+                      </CardDescription>
+                    </CardHeader>
+                  </Card>
+                )}
               </div>
-            )}
-          </main>
+            </main>
 
-          {/* Right Sidebar */}
-          <aside className="hidden lg:block lg:col-span-3">
-            <Card className="sticky top-24 space-y-6 p-6">
-              <div>
-                <h3 className="font-medium mb-4">News & Updates</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <Zap className="h-5 w-5 text-yellow-500 mt-0.5" />
-                    <div>
-                      <p className="text-sm font-medium">New features coming soon!</p>
-                      <p className="text-xs text-muted-foreground">2 days ago</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Users className="h-5 w-5 text-blue-500 mt-0.5" />
-                    <div>
-                      <p className="text-sm font-medium">Connect with 5 new people today</p>
-                      <p className="text-xs text-muted-foreground">1 week ago</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h3 className="font-medium mb-4">Who to follow</h3>
-                <div className="space-y-4">
-                  {[1, 2, 3].map((item) => (
-                    <div key={item} className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="h-8 w-8 rounded-full bg-muted" />
-                        <div>
-                          <p className="text-sm font-medium">Jane Smith</p>
-                          <p className="text-xs text-muted-foreground">Product Designer</p>
-                        </div>
+            {/* Right Sidebar */}
+            <aside className="hidden lg:block lg:col-span-3">
+              <Card className="sticky top-24 space-y-6 p-6">
+                <div>
+                  <h3 className="font-medium mb-4">News & Updates</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <Zap className="h-5 w-5 text-yellow-500 mt-0.5" />
+                      <div>
+                        <p className="text-sm font-medium">New features coming soon!</p>
+                        <p className="text-xs text-muted-foreground">2 days ago</p>
                       </div>
-                      <Button variant="outline" size="sm">
-                        Follow
-                      </Button>
                     </div>
-                  ))}
+                    <div className="flex items-start gap-3">
+                      <Users className="h-5 w-5 text-blue-500 mt-0.5" />
+                      <div>
+                        <p className="text-sm font-medium">Connect with 5 new people today</p>
+                        <p className="text-xs text-muted-foreground">1 week ago</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </Card>
-          </aside>
+
+                <div>
+                  <h3 className="font-medium mb-4">Who to follow</h3>
+                  <div className="space-y-4">
+                    {[1, 2, 3].map((item) => (
+                      <div key={item} className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="h-8 w-8 rounded-full bg-muted" />
+                          <div>
+                            <p className="text-sm font-medium">Jane Smith</p>
+                            <p className="text-xs text-muted-foreground">Product Designer</p>
+                          </div>
+                        </div>
+                        <Button variant="outline" size="sm">
+                          Follow
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Card>
+            </aside>
+          </div>
         </div>
-      </div>
+      ) : (
+        // Unauthenticated — Centered Welcome Card
+        <div className="flex items-center justify-center min-h-screen px-4">
+          <Card className="w-full max-w-md">
+            <CardHeader className="space-y-4 text-center">
+              <Linkedin className="mx-auto h-12 w-12 text-blue-600" />
+              <CardTitle>Welcome to MiniLinkedIn</CardTitle>
+              <CardDescription>
+                Connect with professionals and grow your network
+              </CardDescription>
+            </CardHeader>
+            <div className="p-6 pt-0 space-y-4">
+              <Button asChild className="w-full">
+                <Link href="/login">Sign In</Link>
+              </Button>
+              <Button asChild variant="outline" className="w-full">
+                <Link href="/register">Create Account</Link>
+              </Button>
+            </div>
+          </Card>
+        </div>
+      )}
     </div>
   )
 }

@@ -45,8 +45,8 @@ export function UserNav({ user }: UserNavProps) {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <Link href={`/profile/${user?.id}`} className="flex items-center">
+        <DropdownMenuItem asChild>
+          <Link href={`/profile/${user?.id}`} className="flex items-center w-full">
             <User className="mr-2 h-4 w-4" />
             <span>Profile</span>
           </Link>

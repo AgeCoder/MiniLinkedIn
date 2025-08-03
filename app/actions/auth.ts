@@ -61,7 +61,7 @@ export async function signUpAction(formData: FormData) {
     return { error: "Something went wrong. Please try again." }
   } finally {
     if (success) {
-      permanentRedirect('/dashboard')
+      permanentRedirect('/')
     }
   }
 }
@@ -92,7 +92,7 @@ export async function signInAction(formData: FormData) {
     return { error: "Invalid credentials. Please try again." }
   } finally {
     if (success) {
-      permanentRedirect('/dashboard')
+      permanentRedirect('/')
     }
   }
 }

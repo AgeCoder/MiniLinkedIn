@@ -49,11 +49,8 @@ export default function ProfileCard({ profile }: { profile: Profile }) {
                         )}
                     </div>
 
-                    <Button variant="outline" size="sm">
-                        <MessageCircle className="h-4 w-4 mr-2" />
-                        Message
-                    </Button>
                 </div>
+
 
                 {profile?.bio && (
                     <p className="mt-4 text-sm text-pretty">{profile?.bio}</p>
